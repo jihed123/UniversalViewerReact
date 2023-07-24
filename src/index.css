@@ -12,6 +12,12 @@ code {
 		monospace;
 }
 #uv {
-	width: 640px;
-	height: 480px;
+	height: 668px;
+	width: 924px;
+	margin-top: 2em;
+	margin-left: 2em;
+}
+#changeManifestBtn {
+	margin-top: 1em;
+	margin-left: 2em;
 }

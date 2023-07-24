@@ -8,6 +8,8 @@ const Uvsimple = () => {
 	const manif1 =
 		"https://edsilv.github.io/test-manifests/download-service-enabled.json";
 	const manif2 = "https://wellcomelibrary.org/iiif/b18035723/manifest";
+	const manif3 =
+		"https://api.bl.uk/metadata/iiif/ark:/81055/vdc_100022545251.0x000002/manifest.json";
 	const [manifestUrl, setManifestUrl] = useState<string>(manif1);
 	useEffect(() => {
 		const initViewer = async () => {
@@ -20,7 +22,6 @@ const Uvsimple = () => {
 
 		initViewer();
 	}, [manifestUrl]); // Only re-run the effect if manifestUrl changes
-
 	const handleChangeManifest = () => {
 		// Check the current manifest and update to the other one
 		setManifestUrl((prevUrl) => (prevUrl === manif1 ? manif2 : manif1));
@@ -33,6 +34,7 @@ const Uvsimple = () => {
 				ref={uvRef}></div>
 			<button
 				type="button"
+				id="changeManifestBtn"
 				onClick={handleChangeManifest}>
 				Change manifest
 			</button>
