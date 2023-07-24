@@ -19,7 +19,7 @@ const Uvsimple = () => {
 		};
 
 		initViewer();
-	}, [manifestUrl]);
+	}, [manifestUrl]); // Only re-run the effect if manifestUrl changes
 
 	const handleChangeManifest = () => {
 		// Check the current manifest and update to the other one
