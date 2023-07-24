@@ -3,8 +3,9 @@ import "universalviewer/dist/uv.css";
 import "universalviewer/dist/esm/index.css";
 
 import { init } from "universalviewer";
+
 const Uvsimple = () => {
-	const uvRef = useRef<HTMLDivElement | null>(null); // Explicitly set the type and initialize to null
+	const uvRef = useRef<HTMLDivElement | null>(null);
 	const manifestUrls = useMemo(
 		() => [
 			"https://edsilv.github.io/test-manifests/download-service-enabled.json",
@@ -29,6 +30,10 @@ const Uvsimple = () => {
 		initViewer();
 	}, [currentManifestIndex, manifestUrls]);
 
+	const handleManifestChange = (index: number) => {
+		setCurrentManifestIndex(index);
+	};
+
 	const handleNextManifest = () => {
 		setCurrentManifestIndex((prevIndex) =>
 			prevIndex === manifestUrls.length - 1 ? 0 : prevIndex + 1
@@ -50,7 +55,16 @@ const Uvsimple = () => {
 					ref={uvRef}></div>
 				<div className="list-container">
 					<h1>List of manifest available</h1>
-					<ul className="list-manifest"></ul>
+					<ul className="list-manifest">
+						{manifestUrls.map((url, index) => (
+							<li
+								key={index}
+								onClick={() => handleManifestChange(index)}>
+								{/* Remove the <a> tag to prevent the default link behavior */}
+								<span>{url}</span>
+							</li>
+						))}
+					</ul>
 				</div>
 			</div>
 			<div>
