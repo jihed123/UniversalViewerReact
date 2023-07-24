@@ -21,13 +21,12 @@ body {
 
 .container {
 	display: flex;
-	align-items: flex-start; /* Align items to the top of the container */
+	align-items: flex-start;
 }
 .list-container {
 	margin-left: 2em;
 }
 
-/* Add this CSS to your existing styles */
 .list-manifest {
 	list-style: none;
 	padding: 0;
@@ -61,4 +60,34 @@ body {
 }
 h3 {
 	margin-top: 2em;
+}
+
+.button-manifest {
+	cursor: pointer;
+	margin-top: 1em;
+	margin-left: 2em;
+	padding: 0.5em;
+	background-color: #f0f0f0;
+	border-radius: 4px;
+	transition: background-color 0.3s ease;
+	font-size: 14px; /* Adjust the font size to control the button size */
+	border: none;
+	justify-content: center;
+}
+
+.button-manifest:hover {
+	background-color: #e0e0e0;
+}
+
+.button-manifest span {
+	color: #333;
+}
+
+.button-manifest.active {
+	background-color: #007bff;
+	color: #fff;
+}
+
+.button-manifest.active:hover {
+	background-color: #0056b3;
 }

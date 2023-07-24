@@ -90,14 +90,16 @@ const Uvsimple = () => {
 				<button
 					type="button"
 					id="previousManifestBtn"
+					className="button-manifest"
 					onClick={handlePreviousManifest}>
-					Previous
+					<span>Previous</span>
 				</button>
 				<button
 					type="button"
 					id="nextManifestBtn"
+					className="button-manifest"
 					onClick={handleNextManifest}>
-					Next
+					<span>Next</span>
 				</button>
 			</div>
 		</>
