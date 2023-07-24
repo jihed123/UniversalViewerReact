@@ -1,31 +1,41 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import "universalviewer/dist/uv.css";
 import "universalviewer/dist/esm/index.css";
 
 import { init } from "universalviewer";
 const Uvsimple = () => {
 	const uvRef = useRef<HTMLDivElement | null>(null); // Explicitly set the type and initialize to null
-	const manif1 =
-		"https://edsilv.github.io/test-manifests/download-service-enabled.json";
-	const manif2 = "https://wellcomelibrary.org/iiif/b18035723/manifest";
-	const manif3 =
-		"https://api.bl.uk/metadata/iiif/ark:/81055/vdc_100022545251.0x000002/manifest.json";
-	const [manifestUrl, setManifestUrl] = useState<string>(manif1);
+	const manifestUrls = useMemo(
+		() => [
+			"https://edsilv.github.io/test-manifests/download-service-enabled.json",
+			"https://wellcomelibrary.org/iiif/b18035723/manifest",
+			"https://dms-data.stanford.edu/data/manifests/RomanCoins/bb853kn3021/manifest.json",
+			"https://dms-data.stanford.edu/data/manifests/McLaughlin/bc788vp3448/manifest.json",
+		],
+		[]
+	);
+
+	const [currentManifestIndex, setCurrentManifestIndex] = useState<number>(0);
+
 	useEffect(() => {
 		const initViewer = async () => {
 			const data = {
-				manifest: manifestUrl,
+				manifest: manifestUrls[currentManifestIndex],
 				embedded: true,
 			};
 			init("uv", data);
 		};
 
 		initViewer();
-	}, [manifestUrl]); // Only re-run the effect if manifestUrl changes
+	}, [currentManifestIndex, manifestUrls]);
+
 	const handleChangeManifest = () => {
-		// Check the current manifest and update to the other one
-		setManifestUrl((prevUrl) => (prevUrl === manif1 ? manif2 : manif1));
+		// Cycle to the next manifest in the array
+		setCurrentManifestIndex((prevIndex) =>
+			prevIndex === manifestUrls.length - 1 ? 0 : prevIndex + 1
+		);
 	};
+
 	return (
 		<>
 			<div
