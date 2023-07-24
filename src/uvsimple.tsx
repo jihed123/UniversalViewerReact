@@ -29,10 +29,15 @@ const Uvsimple = () => {
 		initViewer();
 	}, [currentManifestIndex, manifestUrls]);
 
-	const handleChangeManifest = () => {
-		// Cycle to the next manifest in the array
+	const handleNextManifest = () => {
 		setCurrentManifestIndex((prevIndex) =>
 			prevIndex === manifestUrls.length - 1 ? 0 : prevIndex + 1
+		);
+	};
+
+	const handlePreviousManifest = () => {
+		setCurrentManifestIndex((prevIndex) =>
+			prevIndex === 0 ? manifestUrls.length - 1 : prevIndex - 1
 		);
 	};
 
@@ -44,9 +49,15 @@ const Uvsimple = () => {
 				ref={uvRef}></div>
 			<button
 				type="button"
-				id="changeManifestBtn"
-				onClick={handleChangeManifest}>
-				Change manifest
+				id="previousManifestBtn"
+				onClick={handlePreviousManifest}>
+				Previous
+			</button>
+			<button
+				type="button"
+				id="nextManifestBtn"
+				onClick={handleNextManifest}>
+				Next
 			</button>
 		</>
 	);
