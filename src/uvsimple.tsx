@@ -17,6 +17,7 @@ const Uvsimple = () => {
 	);
 
 	const [currentManifestIndex, setCurrentManifestIndex] = useState<number>(0);
+	const [manifestTitles, setManifestTitles] = useState<string[]>([]);
 
 	useEffect(() => {
 		const initViewer = async () => {
@@ -29,6 +30,25 @@ const Uvsimple = () => {
 
 		initViewer();
 	}, [currentManifestIndex, manifestUrls]);
+
+	useEffect(() => {
+		const fetchManifestTitles = async () => {
+			try {
+				const titles = await Promise.all(
+					manifestUrls.map(async (url) => {
+						const response = await fetch(url);
+						const jsonObject = await response.json();
+						return jsonObject.label; // Assuming the title is under the "label" property; adjust accordingly if needed.
+					})
+				);
+				setManifestTitles(titles);
+			} catch (error) {
+				console.error("Error fetching manifest titles:", error);
+			}
+		};
+
+		fetchManifestTitles();
+	}, [manifestUrls]);
 
 	const handleManifestChange = (index: number) => {
 		setCurrentManifestIndex(index);
@@ -54,14 +74,13 @@ const Uvsimple = () => {
 					id="uv"
 					ref={uvRef}></div>
 				<div className="list-container">
-					<h1>List of manifest available</h1>
+					<h3>List of manifest available</h3>
 					<ul className="list-manifest">
-						{manifestUrls.map((url, index) => (
+						{manifestTitles.map((title, index) => (
 							<li
 								key={index}
 								onClick={() => handleManifestChange(index)}>
-								{/* Remove the <a> tag to prevent the default link behavior */}
-								<span>{url}</span>
+								<span>{title}</span>
 							</li>
 						))}
 					</ul>

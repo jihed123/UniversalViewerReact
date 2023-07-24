@@ -26,3 +26,39 @@ body {
 .list-container {
 	margin-left: 2em;
 }
+
+/* Add this CSS to your existing styles */
+.list-manifest {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.list-manifest li {
+	cursor: pointer;
+	margin-bottom: 0.5em;
+	padding: 0.5em;
+	background-color: #f0f0f0;
+	border-radius: 4px;
+	transition: background-color 0.3s ease;
+}
+
+.list-manifest li:hover {
+	background-color: #e0e0e0;
+}
+
+.list-manifest span {
+	color: #333;
+}
+
+.list-manifest li.active {
+	background-color: #007bff;
+	color: #fff;
+}
+
+.list-manifest li.active:hover {
+	background-color: #0056b3;
+}
+h3 {
+	margin-top: 2em;
+}
