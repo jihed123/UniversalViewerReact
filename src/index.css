@@ -7,22 +7,22 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-		monospace;
-}
 #uv {
 	height: 668px;
 	width: 924px;
 	margin-top: 2em;
 	margin-left: 2em;
 }
-#nextBtn {
+#nextBtn,
+#previousManifestBtn {
 	margin-top: 1em;
 	margin-left: 2em;
 }
 
-#previousManifestBtn {
-	margin-top: 1em;
+.container {
+	display: flex;
+	align-items: flex-start; /* Align items to the top of the container */
+}
+.list-container {
 	margin-left: 2em;
 }

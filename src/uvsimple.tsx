@@ -43,22 +43,30 @@ const Uvsimple = () => {
 
 	return (
 		<>
-			<div
-				className="uv"
-				id="uv"
-				ref={uvRef}></div>
-			<button
-				type="button"
-				id="previousManifestBtn"
-				onClick={handlePreviousManifest}>
-				Previous
-			</button>
-			<button
-				type="button"
-				id="nextManifestBtn"
-				onClick={handleNextManifest}>
-				Next
-			</button>
+			<div className="container">
+				<div
+					className="uv"
+					id="uv"
+					ref={uvRef}></div>
+				<div className="list-container">
+					<h1>List of manifest available</h1>
+					<ul className="list-manifest"></ul>
+				</div>
+			</div>
+			<div>
+				<button
+					type="button"
+					id="previousManifestBtn"
+					onClick={handlePreviousManifest}>
+					Previous
+				</button>
+				<button
+					type="button"
+					id="nextManifestBtn"
+					onClick={handleNextManifest}>
+					Next
+				</button>
+			</div>
 		</>
 	);
 };
