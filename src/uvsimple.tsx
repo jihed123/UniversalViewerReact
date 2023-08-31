@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState, useMemo } from "react";
+// import React, { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef } from "react";
 import "universalviewer/dist/uv.css";
 import "universalviewer/dist/esm/index.css";
 
@@ -6,25 +7,29 @@ import { init } from "universalviewer";
 
 const Uvsimple = () => {
 	const uvRef = useRef<HTMLDivElement | null>(null);
-	const manifestUrls = useMemo(
-		() => [
-			"https://www.e-rara.ch/i3f/v20/6069569/manifest",
-			"https://edsilv.github.io/test-manifests/download-service-enabled.json",
-			"https://wellcomelibrary.org/iiif/b18035723/manifest",
-			"https://dms-data.stanford.edu/data/manifests/RomanCoins/bb853kn3021/manifest.json",
-			"https://dms-data.stanford.edu/data/manifests/McLaughlin/bc788vp3448/manifest.json",
-		],
-		[]
-	);
+	// const manifestUrls = useMemo(
+	// 	() => [
+	// 		"https://www.e-rara.ch/i3f/v20/6069569/manifest",
+	// 		"https://edsilv.github.io/test-manifests/download-service-enabled.json",
+	// 		"https://wellcomelibrary.org/iiif/b18035723/manifest",
+	// 		"https://dms-data.stanford.edu/data/manifests/RomanCoins/bb853kn3021/manifest.json",
+	// 		"https://dms-data.stanford.edu/data/manifests/McLaughlin/bc788vp3448/manifest.json",
+	// 	],
+	// 	[]
+	// );
 
-	const [currentManifestIndex, setCurrentManifestIndex] = useState<number>(0);
+	// const [currentManifestIndex, setCurrentManifestIndex] = useState<number>(0);
 	// const [manifestTitles, setManifestTitles] = useState<string[]>([]);
 
 	useEffect(() => {
 		const initViewer = async () => {
 			const startime = performance.now();
+			// const data = {
+			// 	manifest: manifestUrls[currentManifestIndex],
+			// 	embedded: true,
+			// };
 			const data = {
-				manifest: manifestUrls[currentManifestIndex],
+				manifest: "https://www.e-rara.ch/i3f/v20/6069569/manifest",
 				embedded: true,
 			};
 			const uv = init("uv", data);
@@ -35,7 +40,7 @@ const Uvsimple = () => {
 		};
 
 		initViewer();
-	}, [currentManifestIndex, manifestUrls]);
+	});
 
 	// useEffect(() => {
 	// 	const fetchManifestTitles = async () => {
